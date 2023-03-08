@@ -281,6 +281,7 @@ body, html {
   justify-content: space-between;
   margin-top: 2rem;
   background-color: #E6E6E6;
+  color: rgb(16, 8, 8);
 }
 
 .images-parent {
@@ -288,7 +289,8 @@ body, html {
   min-height: auto;
 }
 
-.img-container, .poster-container {
+.img-container,
+.poster-container {
   width: 500px;
 }
 
@@ -310,7 +312,7 @@ body, html {
   padding: 1rem;
 }
 
-.screening-list li {
+.screening-list div {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -352,10 +354,12 @@ button {
     display: block;
     margin: 0 auto;
   }
-  .img-container, .poster-container {
+  .img-container,
+  .poster-container {
     width: 800px;
   }
-  .img-container img, .poster-container img {
+  .img-container img,
+  .poster-container img {
     width: 800px;
   }
   .text-container {
@@ -389,7 +393,7 @@ button {
 }
 .movies p {
   margin-left: 1rem;
-  color: gray;
+  color: black;
   font-weight: 500;
 }
 

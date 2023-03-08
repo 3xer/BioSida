@@ -1,130 +1,130 @@
+let movieContainer = document.querySelector(".movie-container");
 
-let movieContainer = document.querySelector('.movie-container')
+let movie = JSON.parse(localStorage.getItem("movie"));
 
-let movie = JSON.parse(localStorage.getItem('movie'))
+console.log("m", movie);
 
-console.log('m',movie)
+function showSingleMovie() {
+  // get movie poster and image
 
-function showSingleMovie (){
+  let imagesParent = document.createElement("div");
+  imagesParent.classList.add("images-parent");
 
-     // get movie poster and image
+  // create image div
+  let imgContainer = document.createElement("div");
+  imgContainer.classList.add("img-container");
 
-     let imagesParent = document.createElement('div')
-     imagesParent.classList.add('images-parent')
-     
-      // create image div
-      let imgContainer= document.createElement('div')
-      imgContainer.classList.add('img-container')
- 
-      // create image
-      let image = document.createElement('img')
-      image.src = movie.imageUrl
- 
-      imgContainer.appendChild(image)
- 
-      // create poster div
-      let posterContainer= document.createElement('div')
-      posterContainer.classList.add('poster-container')
- 
-      // create image
-      let poster = document.createElement('img')
-      poster.src = movie.posterUrl
- 
-      posterContainer.appendChild(poster)
- 
-      imagesParent.append(imgContainer,posterContainer)
+  // create image
+  let image = document.createElement("img");
+  image.src = movie.imageUrl;
+  image.alt = "big-movie-poster";
 
-      
+  imgContainer.appendChild(image);
 
-    // create container for the text section
+  // create poster div
+  let posterContainer = document.createElement("div");
+  posterContainer.classList.add("poster-container");
 
-    let textContainer = document.createElement('div')
-    textContainer.classList.add('text-container')
-    // create movie title
-    let heading = document.createElement('h1')
-    heading.classList.add = 'movie-title'
-    heading.innerText = movie.title.toUpperCase()
+  // create image
+  let poster = document.createElement("img");
+  poster.src = movie.posterUrl;
+  poster.alt = "small-movie-poster";
 
-    // movie genres
-    let genreEl = document.createElement('h3')
-    genreEl.classList.add = 'movie-genre'
-    genreEl.innerText = movie.genres.toString()
+  posterContainer.appendChild(poster);
 
-    // movie description
-    let description = document.createElement('p')
-    description.classList.add = 'movie-desc'
-    description.innerText = movie.description
+  imagesParent.append(imgContainer, posterContainer);
 
-    // movie specs
+  // create container for the text section
 
-    let movieSpecs = document.createElement('div')
-    movieSpecs.classList.add = 'movie-specs'
+  let textContainer = document.createElement("div");
+  textContainer.classList.add("text-container");
+  // create movie title
+  let heading = document.createElement("h1");
+  heading.classList.add = "movie-title";
+  heading.innerText = movie.title.toUpperCase();
 
-    // get director info
-    let movieDir = document.createElement('span')
-    movieDir.innerHTML = `<span class= 'title'>Regl</span>:${movie.director} | `
+  // movie genres
+  let genreEl = document.createElement("h2");
+  genreEl.classList.add = "movie-genre";
+  genreEl.innerText = movie.genres.toString();
 
-    // get actors info
-    let movieActors = document.createElement('span')
-    movieActors.classList.add('movie-actors')
-    movieActors.innerHTML = `<span class='title'>Skådespelare</span>:${movie.actors.toString()} | `
+  // movie description
+  let description = document.createElement("p");
+  description.classList.add = "movie-desc";
+  description.innerText = movie.description;
 
-    // get country info
-    let movieLocation = document.createElement('span')
-    movieLocation.classList.add('movie-location')
-    movieLocation.innerHTML = `<span class='title'>Land:</span>${movie.country} | `
+  // movie specs
 
-    // get age limit
-    let ageLimit = document.createElement('span')
-   ageLimit.classList.add('movie-age')
-    ageLimit.innerHTML = `<span class='title'>Åldesgräns:</span>${movie.ageRestriction}`
+  let movieSpecs = document.createElement("div");
+  movieSpecs.classList.add = "movie-specs";
 
-    movieSpecs.append(movieDir,movieActors,movieLocation,ageLimit)
+  // get director info
+  let movieDir = document.createElement("span");
+  movieDir.innerHTML = `<span class= 'title'>Regl</span>:${movie.director} | `;
 
+  // get actors info
+  let movieActors = document.createElement("span");
+  movieActors.classList.add("movie-actors");
+  movieActors.innerHTML = `<span class='title'>Skådespelare</span>:${movie.actors.toString()} | `;
 
-    // show screening times
+  // get country info
+  let movieLocation = document.createElement("span");
+  movieLocation.classList.add("movie-location");
+  movieLocation.innerHTML = `<span class='title'>Land:</span>${movie.country} | `;
 
-    let ScreeningCont = document.createElement('ul')
-    ScreeningCont.classList.add('screening-list')
+  // get age limit
+  let ageLimit = document.createElement("span");
+  ageLimit.classList.add("movie-age");
+  ageLimit.innerHTML = `<span class='title'>Åldesgräns:</span>${movie.ageRestriction}`;
 
-    // get the heading
-    let screeningHeading = document.createElement('h2')
-    screeningHeading.innerText = 'VISNINGSTIDER'
-    
-    ScreeningCont.append(screeningHeading)
+  movieSpecs.append(movieDir, movieActors, movieLocation, ageLimit);
 
-    // map the times
-    for(let times of movie.screeningTimes){
-        let list = document.createElement('li')
-        let screeningDate = document.createElement('p')
-        let dateString = new Date(times).toString().split(' ').slice(0,4).join(' ').toUpperCase()
-        screeningDate.innerText = dateString
+  // show screening times
 
-        let screeningTime = document.createElement('p')
-        let dateT = new Date(times).toString().split(' ').slice(4,5).toString()
-        screeningTime.innerText = dateT
-        //screeningTime.innerText = new Date(times).toISOString().split('T')[1].split('.')[0]
+  let ScreeningCont = document.createElement("div");
+  ScreeningCont.classList.add("screening-list");
 
-        // show ticket button
-        let ticketButton = document.createElement('button')
-        ticketButton.classList.add = 'btn'
-        ticketButton.innerText = 'BILJETTER'
+  // get the heading
+  let screeningHeading = document.createElement("h2");
+  screeningHeading.innerText = "VISNINGSTIDER";
 
-        list.append(screeningDate,screeningTime,ticketButton)
+  ScreeningCont.append(screeningHeading);
 
-        ScreeningCont.append(list)
+  // map the times
+  for (let times of movie.screeningTimes) {
+    let list = document.createElement("div");
+    let screeningDate = document.createElement("p");
+    let dateString = new Date(times)
+      .toString()
+      .split(" ")
+      .slice(0, 4)
+      .join(" ")
+      .toUpperCase();
+    screeningDate.innerText = dateString;
 
-    }
+    let screeningTime = document.createElement("p");
+    let dateT = new Date(times).toString().split(" ").slice(4, 5).toString();
+    screeningTime.innerText = dateT;
+    //screeningTime.innerText = new Date(times).toISOString().split('T')[1].split('.')[0]
 
+    // show ticket button
+    let ticketButton = document.createElement("button");
+    ticketButton.classList.add = "btn";
+    ticketButton.innerText = "BILJETTER";
 
-   
-    textContainer.append(heading,genreEl,description,movieSpecs, ScreeningCont)
-    movieContainer.append(imagesParent,textContainer)
+    list.append(screeningDate, screeningTime, ticketButton);
 
-    
+    ScreeningCont.append(list);
+  }
 
+  textContainer.append(
+    heading,
+    genreEl,
+    description,
+    movieSpecs,
+    ScreeningCont
+  );
+  movieContainer.append(imagesParent, textContainer);
 }
 
-
-
-showSingleMovie()
+showSingleMovie();

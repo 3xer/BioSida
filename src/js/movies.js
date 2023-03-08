@@ -47,6 +47,7 @@ class Movies {
         // create image
         let image = document.createElement('img')
         image.src = movie.imageUrl
+        image.alt= 'movie-posters'
  
         imgDiv.appendChild(image)
         imgDiv.addEventListener('click', function(){
@@ -60,6 +61,7 @@ class Movies {
  
         // create title
         let title = document.createElement('p')
+
         title.innerText = movie.title.toUpperCase()
         movieCard.appendChild(imgDiv)
         movieCard.appendChild(title)
